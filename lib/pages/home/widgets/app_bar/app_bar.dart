@@ -1,9 +1,13 @@
 import 'package:DevQuiz/core/core.dart';
+import 'package:DevQuiz/models/UserModel.dart';
+import 'package:DevQuiz/pages/home/state.dart';
 import 'package:DevQuiz/pages/home/widgets/score_card/score_card.dart';
 import 'package:flutter/material.dart';
 
 class HomeAppBar extends PreferredSize {
-  HomeAppBar()
+
+  final UserModel user;
+   HomeAppBar({required this.user})
       : super(
           preferredSize: Size.fromHeight(250),
           child: Container(
@@ -27,7 +31,7 @@ class HomeAppBar extends PreferredSize {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             image: DecorationImage(
-                              image: AssetImage(AppImages.trophy),
+                              image: NetworkImage(user.photoUrl),
                             ),
                           ),
                         ),
@@ -38,7 +42,7 @@ class HomeAppBar extends PreferredSize {
                             style: AppTextStyles.title,
                             children: [
                               TextSpan(
-                                  text: "Gabriel Gava",
+                                  text: user.name,
                                   style: AppTextStyles.titleBold)
                             ]),
                       ),

@@ -1,4 +1,5 @@
 import 'package:DevQuiz/core/app_colors.dart';
+import 'package:DevQuiz/pages/home/controller.dart';
 import 'package:DevQuiz/pages/home/widgets/app_bar/app_bar.dart';
 import 'package:DevQuiz/pages/home/widgets/filter_button/filter_button.dart';
 import 'package:DevQuiz/pages/home/widgets/quiz_card/quiz_card.dart';
@@ -10,10 +11,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  
+  final controller = HomeController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.getUser();
+    controller.getQuizzes();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: HomeAppBar(),
+        appBar: HomeAppBar(user: controller.user!),
         body: Container(
           child: Column(children: [
             Padding(
@@ -49,17 +60,11 @@ class _HomePageState extends State<HomePage> {
                   crossAxisCount: 2,
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
-                  children: [
-                    QuizCard(),
-                    QuizCard(),
-                    QuizCard(),
-                    QuizCard(),
-                    QuizCard(),
-                    QuizCard(),
-                  ],
+                  children: controller.quizzes!.map((e) => QuizCard(
+                    title: e.title,
+                  )).toList()),
                 ),
               ),
-            ),
           ]),
         ));
   }

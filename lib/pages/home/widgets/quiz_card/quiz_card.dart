@@ -4,11 +4,17 @@ import 'package:DevQuiz/core/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class QuizCard extends StatefulWidget {
+
+  final String title;
+  QuizCard({required this.title});
+
+
   @override
   _QuizCardState createState() => _QuizCardState();
 }
 
 class _QuizCardState extends State<QuizCard> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,7 +30,7 @@ class _QuizCardState extends State<QuizCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.asset(AppImages.data),
-                Text("Gerenciamento de Estado", style: AppTextStyles.heading),
+                Text(this.widget.title, style: AppTextStyles.heading),
                 Row(children: [
                   Expanded(
                       flex: 1,
