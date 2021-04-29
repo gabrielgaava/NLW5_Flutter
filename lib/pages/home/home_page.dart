@@ -1,5 +1,6 @@
 import 'package:DevQuiz/core/app_colors.dart';
 import 'package:DevQuiz/pages/home/controller.dart';
+import 'package:DevQuiz/pages/home/state.dart';
 import 'package:DevQuiz/pages/home/widgets/app_bar/app_bar.dart';
 import 'package:DevQuiz/pages/home/widgets/filter_button/filter_button.dart';
 import 'package:DevQuiz/pages/home/widgets/quiz_card/quiz_card.dart';
@@ -19,10 +20,14 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     controller.getUser();
     controller.getQuizzes();
+    controller.stateNotifier.addListener(() {
+      setState((){});
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    if(controller.state == HomeState.success){ 
     return Scaffold(
         appBar: HomeAppBar(user: controller.user!),
         body: Container(
@@ -62,10 +67,21 @@ class _HomePageState extends State<HomePage> {
                   mainAxisSpacing: 16,
                   children: controller.quizzes!.map((e) => QuizCard(
                     title: e.title,
+                    numberOfQuestions: e.questions.length,
+                    awnsered: e.questionAwsered,
                   )).toList()),
                 ),
               ),
           ]),
         ));
+    } else {
+      return Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(AppColors.darkGreen),
+          ),
+        )
+      );
+    }
   }
 }

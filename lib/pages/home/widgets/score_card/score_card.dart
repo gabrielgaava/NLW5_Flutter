@@ -4,6 +4,11 @@ import 'package:DevQuiz/pages/home/widgets/chart/chart.dart';
 import 'package:flutter/material.dart';
 
 class ScoreCard extends StatelessWidget {
+  
+  final score;
+  ScoreCard({required this.score});
+
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,7 +27,7 @@ class ScoreCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Expanded(flex: 1, child: CircularChart()),
+              Expanded(flex: 1, child: CircularChart(userScore: score,)),
               Expanded(
                 flex: 2,
                 child: Padding(

@@ -1,6 +1,5 @@
 import 'package:DevQuiz/core/core.dart';
 import 'package:DevQuiz/models/UserModel.dart';
-import 'package:DevQuiz/pages/home/state.dart';
 import 'package:DevQuiz/pages/home/widgets/score_card/score_card.dart';
 import 'package:flutter/material.dart';
 
@@ -49,7 +48,7 @@ class HomeAppBar extends PreferredSize {
                     ],
                   ),
                 ),
-                Align(alignment: Alignment(0.0, 1.0), child: ScoreCard())
+                Align(alignment: Alignment(0.0, 1.0), child: ScoreCard(score: user.score,))
               ],
             ),
           ),

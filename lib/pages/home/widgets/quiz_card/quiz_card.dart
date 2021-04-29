@@ -6,7 +6,10 @@ import 'package:flutter/material.dart';
 class QuizCard extends StatefulWidget {
 
   final String title;
-  QuizCard({required this.title});
+  final int awnsered;
+  final int numberOfQuestions;
+
+  QuizCard({required this.title, required this.awnsered, required this.numberOfQuestions});
 
 
   @override
@@ -35,13 +38,13 @@ class _QuizCardState extends State<QuizCard> {
                   Expanded(
                       flex: 1,
                       child: Text(
-                        "3 de 10",
+                        "${this.widget.awnsered} de ${this.widget.numberOfQuestions}",
                         style: AppTextStyles.body11,
                       )),
                   Expanded(
                     flex: 2,
                     child: LinearProgressIndicator(
-                      value: 0.3,
+                      value: ((this.widget.awnsered * 100) / this.widget.numberOfQuestions) / 100,
                       backgroundColor: AppColors.chartSecondary,
                       valueColor:
                           AlwaysStoppedAnimation<Color>(AppColors.chartPrimary),

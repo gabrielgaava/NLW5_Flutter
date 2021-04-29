@@ -3,6 +3,10 @@ import 'package:DevQuiz/core/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CircularChart extends StatelessWidget {
+
+  final userScore;
+  CircularChart({required this.userScore});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,13 +19,13 @@ class CircularChart extends StatelessWidget {
             width: 80,
             child: CircularProgressIndicator(
               strokeWidth: 10,
-              value: 0.75,
+              value: userScore / 100,
               backgroundColor: AppColors.chartSecondary,
               valueColor: AlwaysStoppedAnimation<Color>(AppColors.chartPrimary),
             ),
           ),
         ),
-        Center(child: Text("75%", style: AppTextStyles.heading,))
+        Center(child: Text("$userScore%", style: AppTextStyles.heading,))
       ],),
     );
   }
