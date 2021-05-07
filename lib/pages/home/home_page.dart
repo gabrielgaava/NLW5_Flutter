@@ -66,6 +66,7 @@ class _HomePageState extends State<HomePage> {
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
                   children: controller.quizzes!.map((e) => QuizCard(
+                    quiz: e,
                     title: e.title,
                     numberOfQuestions: e.questions.length,
                     awnsered: e.questionAwsered,
